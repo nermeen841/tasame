@@ -29,11 +29,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
-	<key>NSCameraUsageDescription</key>
-    <string>Your message to user when the camera is accessed for the first time</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Your message to user when the microphone is accessed for the first time</string>
-    <key>io.flutter.embedded_views_preview</key>
+	<key>io.flutter.embedded_views_preview</key>
     <true/>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -45,9 +41,7 @@
 	    <string>en</string>
 	    <string>ar</string>
     </array>
-	<key>NSCameraUsageDescription</key>
-    <string>Allows you to take a picture</string>
-    <key>NSPhotoLibraryUsageDescription</key>
+	<key>NSPhotoLibraryUsageDescription</key>
     <string>Allows you to choose a picture</string>
     <key>UIBackgroundModes</key>
     <array>
