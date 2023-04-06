@@ -81,6 +81,7 @@ class _ManageTutorAppointmentScreenState
           ? BlocConsumer<SettingCubit, SettingState>(
               bloc: GetIt.I<SettingCubit>(),
               builder: (context, state) => FloatingActionButton(
+                heroTag: "hero8",
                 onPressed: () async {
                   if (Platform.isAndroid) {
                     await launch(

@@ -40,6 +40,7 @@ class _MenueScreenState extends State<MenueScreen> {
       floatingActionButton: BlocConsumer<SettingCubit, SettingState>(
         bloc: GetIt.I<SettingCubit>(),
         builder: (context, state) => FloatingActionButton(
+          heroTag: "hero3",
           onPressed: () async {
             if (Platform.isAndroid) {
               await launch(

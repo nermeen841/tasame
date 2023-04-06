@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ AppBar layoutAppbar(context, Function(int)? onSelected) {
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0.0,
+<<<<<<< HEAD
     leading: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -41,6 +43,47 @@ AppBar layoutAppbar(context, Function(int)? onSelected) {
                 ),
               ),
             ),
+=======
+    leading:badges. Badge(
+      badgeStyle: const BadgeStyle(badgeColor: Color(0xffFF0921)),
+      badgeAnimation: const BadgeAnimation.fade(
+        animationDuration: Duration(
+          seconds: 2,
+        ),
+      ),
+      badgeContent: Text(
+        "0",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: screenWidth(context) * 0.03,
+        ),
+      ),
+      position: BadgePosition.topStart(
+        start: screenWidth(context) * 0.02,
+        top: -(screenHeight(context) * 0.002),
+      ),
+      child: IconButton(
+        icon: Icon(
+          Icons.notifications,
+          color: kMainColor,
+          size: screenWidth(context) * 0.07,
+        ),
+        padding: EdgeInsets.zero,
+        focusColor: Colors.white,
+        onPressed: () {},
+      ),
+    ),
+    actions: [
+      TextButton(
+        onPressed: () {
+          MagicRouter.navigateTo(const DashboardScreen());
+        },
+        child: Text(
+          translateString("Dashboard", "لوحة التحكم", "Gösterge Paneli"),
+          style: headingStyle.copyWith(
+            color: Colors.green,
+            fontWeight: FontWeight.w400,
+>>>>>>> 039b03d95cb5c903af29e71c72b8175894a458c7
           ),
         ),
         BlocConsumer<ProfileCubit, ProfileState>(
