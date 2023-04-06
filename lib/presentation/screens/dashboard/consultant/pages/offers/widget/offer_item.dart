@@ -86,7 +86,7 @@ class _OfferItemState extends State<OfferItem> {
               if (state is DeleteOfferSuccessState) {
                 GetIt.I<ProfileCubit>().getUserProfile();
                 MagicRouter.navigateAndPopAll(const LayoutScreen(
-                  index: 3,
+                  index: 1,
                 ));
               }
             },

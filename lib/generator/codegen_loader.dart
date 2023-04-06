@@ -55,7 +55,7 @@ class CodegenLoader extends AssetLoader {
         "إذا كنت ترغب في بدء الدردشة مع مدرس ، يرجى الاشتراك في تسامي",
     "see_plans": "انظر الخطط",
     "my_profile": "حسابي",
-    "log_out": "تسجيل خروج",
+    "log_out": "الخروج",
     "profile": "الملف الشخصي",
     "name": "الاسم",
     "country": "الدولة",

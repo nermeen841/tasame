@@ -136,7 +136,7 @@ class _MenueScreenState extends State<MenueScreen> {
                               .getQuastionare()
                               .then((value) {
                             MagicRouter.navigateAndPopAll(const LayoutScreen(
-                              index: 1,
+                              index: 3,
                             ));
                           });
                         },

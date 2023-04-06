@@ -13,6 +13,7 @@ import 'package:zat/presentation/screens/dashboard/user/upcommingconsultation/wi
 import '../../../../../core/router/router.dart';
 import '../../../contactus/cubit/setting_cubit.dart';
 import '../../../layout/layuot.dart';
+import '../../../myaccount/cubit/profile_cubit.dart';
 
 class UpcommingConsultationsScreen extends StatefulWidget {
   final String title;
@@ -64,7 +65,9 @@ class _UpcommingConsultationsScreenState
               listener: (context, state) {},
             )
           : null,
-      body: const UpcommingConsultationsBody(),
+      body: RefreshIndicator(
+          onRefresh: () => GetIt.I<ProfileCubit>().getUserProfile(),
+          child: const UpcommingConsultationsBody()),
     );
   }
 }

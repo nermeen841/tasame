@@ -11,6 +11,7 @@ import 'package:zat/core/widgets/custom_text_field.dart';
 import 'package:zat/core/widgets/space_widget.dart';
 import 'package:zat/generator/locale_keys.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:zat/presentation/screens/myaccount/cubit/profile_cubit.dart';
 import '../../../../core/router/router.dart';
 import '../../home/cubit/home_cubit.dart';
 
@@ -40,6 +41,7 @@ class _AboutUserState extends State<AboutUser> {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is BookApointmentSuccessState) {
+          GetIt.I<ProfileCubit>().getUserProfile();
           GetIt.I<HomeCubit>().getConsultantDetail(
               GetIt.I<HomeCubit>().consultantDetailModel!.data!.id!, false);
         }
@@ -209,7 +211,7 @@ class _AboutUserState extends State<AboutUser> {
                               color: Colors.green,
                             ),
                             Text(translateString(
-                                "Sessions", "جلسات", "oturumlar")),
+                                "consultations", "استشارات", "")),
                           ],
                         ),
                         const VerticalSpace(value: 0.5),

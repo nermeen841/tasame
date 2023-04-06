@@ -139,7 +139,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                   GetIt.I<ProfileCubit>().getUserProfile();
 
                   MagicRouter.navigateAndPopAll(const LayoutScreen(
-                    index: 4,
+                    index: 0,
                   ));
                   // MagicRouter.navigateAndPReplacement(
                   //     const ManageTutorAppointmentScreen());

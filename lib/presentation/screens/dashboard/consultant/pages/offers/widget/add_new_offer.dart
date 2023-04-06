@@ -83,7 +83,7 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
                   state is AddNewOfferSuccessState) {
                 GetIt.I<ProfileCubit>().getUserProfile();
                 MagicRouter.navigateAndPopAll(const LayoutScreen(
-                  index: 3,
+                  index: 1,
                 ));
                 // MagicRouter.navigateAndPReplacement(const ManageOffersScreen());
               }

@@ -27,7 +27,6 @@ import '../../../../core/widgets/custom_drop_down.dart';
 import '../../dashboard/consultant/pages/appointment/appointment.dart';
 import '../actions/delete_language.dart';
 import '../actions/edit_tutor_appointment.dart';
-import '../myaccount.dart';
 import '../widget/language_selection.dart';
 import '../widget/select_credits.dart';
 import '../widget/specialicity_selection.dart';
@@ -135,8 +134,9 @@ class ProfileCubit extends Cubit<ProfileState> {
               showToast(msg: l.message, state: ToastStates.ERROR);
               emit(AddNewAppointmentErrorState());
               getUserProfile();
-              MagicRouter.navigateAndPReplacement(
-                  const ManageTutorAppointmentScreen());
+              MagicRouter.navigateAndPopAll(const LayoutScreen(
+                index: 0,
+              ));
             },
             (r) {
               showToast(msg: r!.message!, state: ToastStates.SUCCESS);
@@ -144,7 +144,7 @@ class ProfileCubit extends Cubit<ProfileState> {
               if (r.message !=
                   "لابد من وجود مده ساعة على الاقل بعد الموعد السابق لاضافة موعد جديد") {
                 MagicRouter.navigateAndPopAll(const LayoutScreen(
-                  index: 4,
+                  index: 0,
                 ));
                 // MagicRouter.navigateAndPReplacement(
                 //     const ManageTutorAppointmentScreen());
@@ -184,8 +184,11 @@ class ProfileCubit extends Cubit<ProfileState> {
             },
             (r) {
               showToast(msg: r!.message!, state: ToastStates.SUCCESS);
+              getUserProfile();
               emit(CancelAppointmentSuccessState());
-              MagicRouter.navigateAndPopAll(const LayoutScreen());
+              MagicRouter.navigateAndPopAll(const LayoutScreen(
+                index: 0,
+              ));
             },
           ),
         );
@@ -261,7 +264,7 @@ class ProfileCubit extends Cubit<ProfileState> {
               showToast(msg: r!.message!, state: ToastStates.SUCCESS);
               emit(DeleteTutorAppointmentSuccessState());
               MagicRouter.navigateAndPopAll(const LayoutScreen(
-                index: 4,
+                index: 0,
               ));
               // MagicRouter.navigateAndPReplacement(
               //     const ManageTutorAppointmentScreen());

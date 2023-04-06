@@ -186,7 +186,7 @@ class _TutorProfileFormState extends State<TutorProfileForm> {
           GetIt.I<ProfileCubit>().getUserProfile().then(
                 (value) => MagicRouter.navigateAndPopAll(
                   const LayoutScreen(
-                    index: 1,
+                    index: 3,
                   ),
                 ),
               );

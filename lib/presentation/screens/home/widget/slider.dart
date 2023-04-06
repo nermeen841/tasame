@@ -30,13 +30,13 @@ class _HomeSliderState extends State<HomeSlider> {
         return (GetIt.I<SettingCubit>().settingModel != null)
             ? Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
                         width: screenWidth(context) * 0.25,
-                        height: screenHeight(context) * 0.1,
+                        height: screenHeight(context) * 0.06,
                         child: customCachedNetworkImage(
                           url:
                               GetIt.I<SettingCubit>().settingModel!.data!.logo!,
@@ -44,44 +44,46 @@ class _HomeSliderState extends State<HomeSlider> {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      const HorizontalSpace(value: 1),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            GetIt.I<SettingCubit>()
-                                .settingModel!
-                                .data!
-                                .titleSlider!,
-                            style: headingStyle.copyWith(
-                              color: colordeepGrey,
-                              fontSize: screenWidth(context) * 0.045,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const VerticalSpace(value: 0.7),
-                          SizedBox(
-                            width: screenWidth(context) * 0.6,
-                            child: Wrap(
-                              children: [
-                                Text(
-                                  parseHtmlString(GetIt.I<SettingCubit>()
-                                      .settingModel!
-                                      .data!
-                                      .textSlider!),
-                                  style: headingStyle.copyWith(
-                                    color: colorGrey,
-                                    height: 1.3,
-                                    fontSize: screenWidth(context) * 0.035,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      Divider(
+                        color: colordeepGrey,
                       ),
+                      // Column(
+                      //   crossAxisAlignment: CrossAxisAlignment.start,
+                      //   mainAxisAlignment: MainAxisAlignment.start,
+                      //   children: [
+                      //     Text(
+                      //       GetIt.I<SettingCubit>()
+                      //           .settingModel!
+                      //           .data!
+                      //           .titleSlider!,
+                      //       style: headingStyle.copyWith(
+                      //         color: colordeepGrey,
+                      //         fontSize: screenWidth(context) * 0.045,
+                      //         fontWeight: FontWeight.bold,
+                      //       ),
+                      //     ),
+                      //     const VerticalSpace(value: 0.7),
+                      //     SizedBox(
+                      //       width: screenWidth(context) * 0.6,
+                      //       child: Wrap(
+                      //         children: [
+                      //           Text(
+                      //             parseHtmlString(GetIt.I<SettingCubit>()
+                      //                 .settingModel!
+                      //                 .data!
+                      //                 .textSlider!),
+                      //             style: headingStyle.copyWith(
+                      //               color: colorGrey,
+                      //               height: 1.3,
+                      //               fontSize: screenWidth(context) * 0.035,
+                      //               fontWeight: FontWeight.bold,
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                   const VerticalSpace(value: 2),

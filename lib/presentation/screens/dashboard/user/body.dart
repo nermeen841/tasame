@@ -64,7 +64,7 @@ class _UserDashBoardScreenState extends State<UserDashBoardScreen> {
             onTap: () {
               GetIt.I<ProfileCubit>().getUserProfile();
               MagicRouter.navigateAndPopAll(const LayoutScreen(
-                index: 4,
+                index: 0,
               ));
               // MagicRouter.navigateTo(
               //   UpcommingConsultationsScreen(

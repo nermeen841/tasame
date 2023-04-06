@@ -76,7 +76,13 @@ class _ConsultantOffersState extends State<ConsultantOffers> {
                             },
                             child: Container(
                               width: screenWidth(context) * 0.35,
-                              height: screenHeight(context) * 0.12,
+                              height: (prefs.getString("user_type") != "user")
+                                  ? screenHeight(context) * 0.1
+                                  : screenHeight(context) * 0.15,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth(context) * 0.017,
+                                vertical: screenHeight(context) * 0.013,
+                              ),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   color: colordeepGrey,
@@ -86,38 +92,32 @@ class _ConsultantOffersState extends State<ConsultantOffers> {
                                 color: Colors.white,
                               ),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: screenWidth(context) * 0.017,
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          "${translateString("Num of consultant: ", "عدد الاستشارات", "danışman sayısı")} ${GetIt.I<HomeCubit>().consultantDetailModel!.data!.offers![index].numConsults!}",
-                                          style: headingStyle.copyWith(
-                                            color: colordeepGrey,
-                                            fontWeight: FontWeight.normal,
-                                            fontSize:
-                                                screenWidth(context) * 0.03,
-                                          ),
-                                        ),
-                                        const VerticalSpace(value: 1),
-                                        Text(
-                                          "${translateString("price: ", "السعر : ", "fiyat")} ${getPrice(price: num.parse(GetIt.I<HomeCubit>().consultantDetailModel!.data!.offers![index].price!))}",
-                                          style: headingStyle.copyWith(
-                                            color: colordeepGrey,
-                                            fontWeight: FontWeight.normal,
-                                            fontSize:
-                                                screenWidth(context) * 0.03,
-                                          ),
-                                        ),
-                                        const VerticalSpace(value: 1),
-                                      ],
+                                  Text(
+                                    "${translateString("Num of consultant: ", "عدد الاستشارات : ", "danışman sayısı")} ${GetIt.I<HomeCubit>().consultantDetailModel!.data!.offers![index].numConsults!}",
+                                    style: headingStyle.copyWith(
+                                      color: colordeepGrey,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: screenWidth(context) * 0.03,
                                     ),
                                   ),
+                                  const VerticalSpace(value: 1),
+                                  Text(
+                                    getPrice(
+                                        price: num.parse(GetIt.I<HomeCubit>()
+                                            .consultantDetailModel!
+                                            .data!
+                                            .offers![index]
+                                            .price!)),
+                                    style: headingStyle.copyWith(
+                                      color: colordeepGrey,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: screenWidth(context) * 0.03,
+                                    ),
+                                  ),
+                                  const VerticalSpace(value: 1),
                                   (prefs.getString("user_type") == "user")
                                       ? SizedBox(
                                           width: screenWidth(context) * 0.35,

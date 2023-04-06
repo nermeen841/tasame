@@ -13,6 +13,7 @@ import 'package:zat/presentation/screens/qustionare/model/orders.dart';
 import 'package:zat/presentation/screens/qustionare/model/payment_types.dart';
 import 'package:zat/presentation/screens/qustionare/model/quastionare.dart';
 import 'package:zat/presentation/screens/qustionare/model/questions.dart';
+import 'package:zat/presentation/screens/qustionare/widget/result_screen.dart';
 import '../../../../core/router/router.dart';
 import '../action/getquastionare.dart';
 import '../action/show_result.dart';
@@ -145,13 +146,15 @@ class QuastionaireCubit extends Cubit<QuastionaireState> {
             },
             (r) async {
               if (r!.message != "questionnaire done later") {
-                await launch(r.data!.pdf!);
                 emit(QuastionareResultSuccesstate());
-                MagicRouter.navigateAndPopAll(const LayoutScreen());
+                MagicRouter.navigateAndPReplacement(
+                    ResultScreen(result: result.toString(), url: r.data!.pdf!));
               } else {
                 showToast(msg: r.message!, state: ToastStates.ERROR);
                 emit(QuastionareResultSuccesstate());
-                MagicRouter.navigateAndPopAll(const LayoutScreen());
+                MagicRouter.navigateAndPopAll(const LayoutScreen(
+                  index: 4,
+                ));
               }
             },
           ),

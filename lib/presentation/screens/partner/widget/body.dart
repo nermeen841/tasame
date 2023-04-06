@@ -29,72 +29,86 @@ class _PartnerBodyState extends State<PartnerBody> {
                   vertical: screenHeight(context) * 0.02,
                   horizontal: screenWidth(context) * 0.02,
                 ),
-                child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.start,
-                  direction: Axis.horizontal,
-                  runSpacing: 30,
-                  spacing: 10,
-                  children: List.generate(
-                    GetIt.I<HomeCubit>().partnerModel!.data!.length,
-                    (index) => SizedBox(
-                      width: screenWidth(context) * 0.4,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: screenWidth(context) * 0.3,
-                            height: screenHeight(context) * 0.15,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                screenWidth(context) * 0.04,
-                              ),
-                              child: customCachedNetworkImage(
-                                  fit: BoxFit.cover,
-                                  url: GetIt.I<HomeCubit>()
-                                      .partnerModel!
-                                      .data![index]
-                                      .logo!,
-                                  context: context),
-                            ),
-                          ),
-                          const VerticalSpace(value: 1),
-                          Text(
-                            GetIt.I<HomeCubit>()
-                                    .partnerModel!
-                                    .data![index]
-                                    .name ??
-                                "",
-                            maxLines: 1,
-                            overflow: TextOverflow.fade,
-                          ),
-                          const VerticalSpace(value: 1),
-                          InkWell(
-                            onTap: () async => await launch(GetIt.I<HomeCubit>()
-                                .partnerModel!
-                                .data![index]
-                                .link!),
-                            child: Row(
+                child: (GetIt.I<HomeCubit>().partnerModel!.data!.isNotEmpty)
+                    ? Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        direction: Axis.horizontal,
+                        runSpacing: 30,
+                        spacing: 10,
+                        children: List.generate(
+                          GetIt.I<HomeCubit>().partnerModel!.data!.length,
+                          (index) => SizedBox(
+                            width: screenWidth(context) * 0.4,
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
-                                  Icons.launch_outlined,
-                                  color: kMainColor,
+                                SizedBox(
+                                  width: screenWidth(context) * 0.3,
+                                  height: screenHeight(context) * 0.15,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                      screenWidth(context) * 0.04,
+                                    ),
+                                    child: customCachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        url: GetIt.I<HomeCubit>()
+                                            .partnerModel!
+                                            .data![index]
+                                            .logo!,
+                                        context: context),
+                                  ),
                                 ),
-                                const HorizontalSpace(value: 0.7),
+                                const VerticalSpace(value: 1),
                                 Text(
-                                  translateString(
-                                      "Partner website", "صفحة الشريك", ""),
+                                  GetIt.I<HomeCubit>()
+                                          .partnerModel!
+                                          .data![index]
+                                          .name ??
+                                      "",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.fade,
+                                ),
+                                const VerticalSpace(value: 1),
+                                InkWell(
+                                  onTap: () async => await launch(
+                                      GetIt.I<HomeCubit>()
+                                          .partnerModel!
+                                          .data![index]
+                                          .link!),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.launch_outlined,
+                                        color: kMainColor,
+                                      ),
+                                      const HorizontalSpace(value: 0.7),
+                                      Text(
+                                        translateString("Partner website",
+                                            "صفحة الشريك", ""),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                        ],
+                        ),
+                      )
+                    : Center(
+                        child: Text(
+                          translateString("no partners here yet",
+                              "لا توجد اعتمادات هنا بعد ", ""),
+                          style: headingStyle.copyWith(
+                            color: kMainColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: screenWidth(context) * 0.04,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
               )
             : loading();
       },

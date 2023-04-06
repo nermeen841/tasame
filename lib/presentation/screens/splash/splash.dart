@@ -20,7 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
   getScreen() {
     if (prefs.getBool("login") == true) {
       setState(() {
-        screen = const LayoutScreen();
+        screen = const LayoutScreen(
+          index: 4,
+        );
       });
     } else {
       setState(() {

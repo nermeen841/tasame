@@ -69,7 +69,7 @@ class _ManageTutorAppointmentScreenState
                     context.locale = const Locale('ar', '');
                     prefs.setString("lang", "ar");
 
-                    prefs.setString("language", "اللغة العربية");
+                    prefs.setString("language", "العربية");
                   });
 
                   MagicRouter.navigateAndPopAll(const SplashScreen());

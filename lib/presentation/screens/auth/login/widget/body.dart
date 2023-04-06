@@ -242,7 +242,7 @@ class _LoginBodyState extends State<LoginBody> {
                   GetIt.I<ProfileCubit>().getUserProfile();
                   GetIt.I<AuthCubit>().getcurrency();
                   if (prefs.getString("user_type") == "user") {
-                    MagicRouter.navigateAndPopAll(const LayoutScreen());
+                    MagicRouter.navigateAndPopAll(const LayoutScreen(index: 4));
                     // MagicRouter.navigateAndPopAll(UpcommingConsultationsScreen(
                     //     fromAuth: true,
                     //     title: translateString("Upcomming Consultations",

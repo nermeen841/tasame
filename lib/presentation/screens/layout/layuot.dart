@@ -39,25 +39,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
     return (prefs.getString("user_type") == "user")
         ? [
             PersistentBottomNavBarItem(
-              icon: const Icon(CupertinoIcons.home),
-              title: (LocaleKeys.HOME.tr()),
-              activeColorPrimary: Colors.black,
-              inactiveColorPrimary: Colors.grey,
-            ),
-            PersistentBottomNavBarItem(
-              icon: const Icon(
-                CupertinoIcons.list_bullet_below_rectangle,
-              ),
-              title: translateString("Scales", "المقاييس", ""),
-              activeColorPrimary: Colors.black,
-              inactiveColorPrimary: Colors.grey,
-            ),
-            PersistentBottomNavBarItem(
-              icon: const Icon(
-                CupertinoIcons.line_horizontal_3_decrease_circle,
-                color: Colors.white,
-              ),
-              title: (LocaleKeys.MENUE.tr()),
+              icon: const Icon(Icons.computer_outlined),
+              title: (translateString("My booking", "حجوزاتي", "")),
               activeColorPrimary: Colors.black,
               inactiveColorPrimary: Colors.grey,
             ),
@@ -70,31 +53,35 @@ class _LayoutScreenState extends State<LayoutScreen> {
               inactiveColorPrimary: Colors.grey,
             ),
             PersistentBottomNavBarItem(
-              icon: const Icon(Icons.computer_outlined),
-              title: (translateString("My booking", "حجوزاتي", "")),
+              icon: const Icon(
+                CupertinoIcons.line_horizontal_3_decrease_circle,
+                color: Colors.white,
+              ),
+              title: (LocaleKeys.MENUE.tr()),
               activeColorPrimary: Colors.black,
               inactiveColorPrimary: Colors.grey,
             ),
-          ]
-        : [
+            PersistentBottomNavBarItem(
+              icon: const Icon(
+                CupertinoIcons.list_bullet_below_rectangle,
+              ),
+              title: translateString("Scales", "المقاييس", ""),
+              activeColorPrimary: Colors.black,
+              inactiveColorPrimary: Colors.grey,
+            ),
             PersistentBottomNavBarItem(
               icon: const Icon(CupertinoIcons.home),
               title: (LocaleKeys.HOME.tr()),
               activeColorPrimary: Colors.black,
               inactiveColorPrimary: Colors.grey,
             ),
-            PersistentBottomNavBarItem(
-              icon: const Icon(CupertinoIcons.person),
-              title: (LocaleKeys.MY_PROFILE.tr()),
-              activeColorPrimary: Colors.black,
-              inactiveColorPrimary: Colors.grey,
-            ),
+          ]
+        : [
             PersistentBottomNavBarItem(
               icon: const Icon(
-                CupertinoIcons.line_horizontal_3_decrease_circle,
-                color: Colors.white,
+                CupertinoIcons.calendar,
               ),
-              title: (LocaleKeys.MENUE.tr()),
+              title: translateString("Appointment", "المواعيد", ""),
               activeColorPrimary: Colors.black,
               inactiveColorPrimary: Colors.grey,
             ),
@@ -108,9 +95,22 @@ class _LayoutScreenState extends State<LayoutScreen> {
             ),
             PersistentBottomNavBarItem(
               icon: const Icon(
-                CupertinoIcons.calendar,
+                CupertinoIcons.line_horizontal_3_decrease_circle,
+                color: Colors.white,
               ),
-              title: translateString("Appointment", "المواعيد", ""),
+              title: (LocaleKeys.MENUE.tr()),
+              activeColorPrimary: Colors.black,
+              inactiveColorPrimary: Colors.grey,
+            ),
+            PersistentBottomNavBarItem(
+              icon: const Icon(CupertinoIcons.person),
+              title: (LocaleKeys.MY_PROFILE.tr()),
+              activeColorPrimary: Colors.black,
+              inactiveColorPrimary: Colors.grey,
+            ),
+            PersistentBottomNavBarItem(
+              icon: const Icon(CupertinoIcons.home),
+              title: (LocaleKeys.HOME.tr()),
               activeColorPrimary: Colors.black,
               inactiveColorPrimary: Colors.grey,
             ),
@@ -120,38 +120,37 @@ class _LayoutScreenState extends State<LayoutScreen> {
   List<Widget> _buildScreens() {
     return (prefs.getString("user_type") == "user")
         ? [
-            const HomeScreen(),
-            const QuastionareScreen(
-              fromHome: true,
-            ),
-            const MenueScreen(),
-            const AllConsultantScreen(),
             UpcommingConsultationsScreen(
               fromAuth: false,
               title: translateString("Upcomming Consultations",
                   "الاستشارات القادمة", "Yaklaşan İstişareler"),
               fromHome: true,
             ),
+            const AllConsultantScreen(),
+            const MenueScreen(),
+            const QuastionareScreen(
+              fromHome: true,
+            ),
+            const HomeScreen(),
           ]
         : const [
-            HomeScreen(),
-            MyProfileScreen(
-              fromHome: true,
-            ),
-            MenueScreen(),
-            ManageOffersScreen(
-              fromHome: true,
-            ),
             ManageTutorAppointmentScreen(
               fromHome: true,
             ),
+            ManageOffersScreen(
+              fromHome: true,
+            ),
+            MenueScreen(),
+            MyProfileScreen(
+              fromHome: true,
+            ),
+            HomeScreen(),
           ];
   }
 
   @override
   void initState() {
-    controller = PersistentTabController(
-        initialIndex: (widget.index != null) ? widget.index! : 0);
+    controller = PersistentTabController(initialIndex: widget.index ?? 0);
     GetIt.I<ProfileCubit>().getUserProfile();
     super.initState();
   }
@@ -195,7 +194,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
               context.locale = const Locale('ar', '');
               prefs.setString("lang", "ar");
 
-              prefs.setString("language", "اللغة العربية");
+              prefs.setString("language", "العربية");
             });
 
             MagicRouter.navigateAndPopAll(const SplashScreen());
@@ -212,19 +211,19 @@ class _LayoutScreenState extends State<LayoutScreen> {
             currentIndex = value;
           });
           if (prefs.getString("user_type") == "user") {
-            if (value == 1) {
+            if (value == 3) {
               GetIt.I<QuastionaireCubit>().getQuastionare();
             } else if (value == 2) {
               GetIt.I<SettingCubit>().getCustomPage();
               GetIt.I<SettingCubit>().getSettingData();
-            } else if (value == 4) {
+            } else if (value == 0) {
               GetIt.I<ProfileCubit>().getUserProfile();
             }
           } else {
             if (value == 2) {
               GetIt.I<SettingCubit>().getCustomPage();
               GetIt.I<SettingCubit>().getSettingData();
-            } else if (value == 1 || value == 3 || value == 4) {
+            } else if (value == 1 || value == 3 || value == 0) {
               GetIt.I<ProfileCubit>().getUserProfile();
             }
           }

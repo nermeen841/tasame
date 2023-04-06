@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get_it/get_it.dart';
 import 'package:zat/presentation/screens/auth/bloc/Auth_cubit/auth_cubit.dart';
 import 'package:zat/presentation/screens/consult_detail/widget/video_player.dart';
@@ -160,22 +161,30 @@ class _ConsultantInfoCardState extends State<ConsultantInfoCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(
-                          CupertinoIcons.star_fill,
-                          color: Colors.amber,
-                          size: screenWidth(context) * 0.03,
-                        ),
-                        Text(
-                          GetIt.I<HomeCubit>()
+                        RatingBar(
+                          ignoreGestures: true,
+                          ratingWidget: RatingWidget(
+                            full: const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            half: const Icon(
+                              Icons.star_half,
+                              color: Colors.amber,
+                            ),
+                            empty: const Icon(
+                              Icons.star_outline,
+                              color: Colors.amber,
+                            ),
+                          ),
+                          initialRating: double.parse(GetIt.I<HomeCubit>()
                                   .consultantDetailModel!
                                   .data!
                                   .rate ??
-                              "",
-                          style: headingStyle.copyWith(
-                            color: colordeepGrey,
-                            fontWeight: FontWeight.w400,
-                            fontSize: screenWidth(context) * 0.03,
-                          ),
+                              ""),
+                          itemCount: 5,
+                          itemSize: screenWidth(context) * 0.03,
+                          onRatingUpdate: (double value) {},
                         ),
                       ],
                     ),
@@ -193,7 +202,7 @@ class _ConsultantInfoCardState extends State<ConsultantInfoCard> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(translateString(
-                                      "I speak : ", "اتحدث : ", "")),
+                                      "I speak : ", "أتحدث : ", "")),
                                   Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -207,8 +216,20 @@ class _ConsultantInfoCardState extends State<ConsultantInfoCard> {
                                           .length,
                                       (index) => Row(
                                         children: [
-                                          Text(
-                                              "${GetIt.I<HomeCubit>().consultantDetailModel!.data!.languages![index].name!} - "),
+                                          Text(GetIt.I<HomeCubit>()
+                                              .consultantDetailModel!
+                                              .data!
+                                              .languages![index]
+                                              .name!),
+                                          (index !=
+                                                  GetIt.I<HomeCubit>()
+                                                          .consultantDetailModel!
+                                                          .data!
+                                                          .languages!
+                                                          .length -
+                                                      1)
+                                              ? const Text(" - ")
+                                              : const SizedBox(),
                                           const HorizontalSpace(value: 0.5),
                                         ],
                                       ),

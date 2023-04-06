@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:zat/generator/locale_keys.dart';
+import 'package:zat/presentation/screens/layout/layuot.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/constants.dart';
 import '../../core/router/router.dart';
@@ -105,11 +106,20 @@ AppBar internalScreensAppbar(context, Function(int)? onSelected) {
       PopupMenuButton(
         onSelected: (value) {
           if (value == 1) {
-            dialog(context);
-            GetIt.I<ProfileCubit>().getUserProfile().then((value) {
-              MagicRouter.pop();
-              MagicRouter.navigateTo(const MyProfileScreen());
-            });
+            if (prefs.getString("user_type") == "user") {
+              dialog(context);
+              GetIt.I<ProfileCubit>().getUserProfile().then((value) {
+                MagicRouter.pop();
+                MagicRouter.navigateTo(const MyProfileScreen());
+              });
+            } else {
+              dialog(context);
+              GetIt.I<ProfileCubit>().getUserProfile().then((value) {
+                MagicRouter.navigateAndPopAll(const LayoutScreen(
+                  index: 3,
+                ));
+              });
+            }
           } else {
             GetIt.I<AuthCubit>().postLogOut();
           }

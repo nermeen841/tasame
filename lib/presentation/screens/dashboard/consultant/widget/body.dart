@@ -43,7 +43,7 @@ class _DashboardBodyState extends State<DashboardBody> {
                 // MagicRouter.pop();
                 // MagicRouter.navigateTo(const MyProfileScreen());
                 MagicRouter.navigateAndPopAll(const LayoutScreen(
-                  index: 1,
+                  index: 3,
                 ));
               });
             },
@@ -66,7 +66,7 @@ class _DashboardBodyState extends State<DashboardBody> {
               //  MagicRouter.navigateTo(const ManageTutorAppointmentScreen())
               GetIt.I<ProfileCubit>().getUserProfile();
               MagicRouter.navigateAndPopAll(const LayoutScreen(
-                index: 4,
+                index: 0,
               ));
             },
             leading: Icon(
@@ -138,7 +138,7 @@ class _DashboardBodyState extends State<DashboardBody> {
               //  MagicRouter.navigateTo(const ManageOffersScreen()),
               GetIt.I<ProfileCubit>().getUserProfile();
               MagicRouter.navigateAndPopAll(const LayoutScreen(
-                index: 3,
+                index: 1,
               ));
             },
             leading: Icon(

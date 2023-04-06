@@ -107,9 +107,13 @@ class HomeCubit extends Cubit<HomeState> {
     required int gender,
     required int rate,
     required int languageID,
+    required int specialictyId,
+    required String date,
   }) async {
     emit(GetSearchResultLoadingState());
-    await SearchActions(keyword, gender, languageID, rate).run().then(
+    await SearchActions(keyword, gender, languageID, rate, specialictyId, date)
+        .run()
+        .then(
           (value) => value.fold(
             (l) {
               print(l.message);

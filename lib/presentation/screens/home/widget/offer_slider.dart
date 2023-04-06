@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:get_it/get_it.dart';
+import 'package:zat/core/constants/colors.dart';
 import 'package:zat/core/constants/constants.dart';
 import 'package:zat/presentation/screens/home/cubit/home_cubit.dart';
 
@@ -32,6 +33,12 @@ class _OfferSliderItemState extends State<OfferSliderItem> {
                 child: Swiper(
                   containerHeight: screenHeight(context) * 0.4,
                   itemHeight: screenHeight(context) * 0.4,
+                  pagination: SwiperPagination(
+                      builder: DotSwiperPaginationBuilder(
+                        color: kMainColor.withOpacity(0.4),
+                        activeColor: kMainColor,
+                      ),
+                      alignment: Alignment.bottomCenter),
                   itemCount:
                       GetIt.I<HomeCubit>().offersSliderModel!.data!.length,
                   itemBuilder: (context, index) => Stack(

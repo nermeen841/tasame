@@ -58,223 +58,219 @@ class _UpcommingConsultationsBodyState
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () => GetIt.I<ProfileCubit>().getUserProfile(),
-      child: BlocConsumer<ProfileCubit, ProfileState>(
-        listener: (context, state) {},
-        bloc: GetIt.I<ProfileCubit>(),
-        builder: (context, state) {
-          return (GetIt.I<ProfileCubit>().userModel != null)
-              ? SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(
-                    vertical: screenHeight(context) * 0.02,
-                    horizontal: screenWidth(context) * 0.04,
-                  ),
-                  child: (GetIt.I<ProfileCubit>()
-                          .userModel!
-                          .data!
-                          .bookings!
-                          .isNotEmpty)
-                      ? Column(
-                          children: List.generate(
-                            GetIt.I<ProfileCubit>()
-                                .userModel!
-                                .data!
-                                .bookings!
-                                .length,
-                            (index) => Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth(context) * 0.02,
-                                vertical: screenHeight(context) * 0.015,
-                              ),
-                              margin: EdgeInsets.all(
+    return BlocConsumer<ProfileCubit, ProfileState>(
+      listener: (context, state) {},
+      bloc: GetIt.I<ProfileCubit>(),
+      builder: (context, state) {
+        return (GetIt.I<ProfileCubit>().userModel != null)
+            ? SingleChildScrollView(
+                padding: EdgeInsets.symmetric(
+                  vertical: screenHeight(context) * 0.02,
+                  horizontal: screenWidth(context) * 0.04,
+                ),
+                child: (GetIt.I<ProfileCubit>()
+                        .userModel!
+                        .data!
+                        .bookings!
+                        .isNotEmpty)
+                    ? Column(
+                        children: List.generate(
+                          GetIt.I<ProfileCubit>()
+                              .userModel!
+                              .data!
+                              .bookings!
+                              .length,
+                          (index) => Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth(context) * 0.02,
+                              vertical: screenHeight(context) * 0.015,
+                            ),
+                            margin: EdgeInsets.all(
+                              screenWidth(context) * 0.015,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(
                                 screenWidth(context) * 0.015,
                               ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(
-                                  screenWidth(context) * 0.015,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: colorGrey.withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 1,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.bagShopping,
+                                  color: kMainColor,
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: colorGrey.withOpacity(0.2),
-                                    spreadRadius: 1,
-                                    blurRadius: 1,
-                                    offset: const Offset(0, 2),
-                                  )
-                                ],
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    FontAwesomeIcons.bagShopping,
-                                    color: kMainColor,
-                                  ),
-                                  const HorizontalSpace(value: 3),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        GetIt.I<ProfileCubit>()
-                                            .userModel!
-                                            .data!
-                                            .bookings![index]
-                                            .tutor!,
-                                        style: headingStyle.copyWith(
-                                          color: colordeepGrey,
-                                          fontSize: screenWidth(context) * 0.04,
-                                          fontWeight: FontWeight.w400,
-                                        ),
+                                const HorizontalSpace(value: 3),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      GetIt.I<ProfileCubit>()
+                                          .userModel!
+                                          .data!
+                                          .bookings![index]
+                                          .tutor!,
+                                      style: headingStyle.copyWith(
+                                        color: colordeepGrey,
+                                        fontSize: screenWidth(context) * 0.04,
+                                        fontWeight: FontWeight.w400,
                                       ),
-                                      const VerticalSpace(value: 0.7),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            GetIt.I<ProfileCubit>()
-                                                .userModel!
-                                                .data!
-                                                .bookings![index]
-                                                .date!,
-                                            style: headingStyle.copyWith(
-                                              color: colordeepGrey,
-                                              fontSize:
-                                                  screenWidth(context) * 0.04,
-                                              fontWeight: FontWeight.w400,
-                                            ),
+                                    ),
+                                    const VerticalSpace(value: 0.7),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          GetIt.I<ProfileCubit>()
+                                              .userModel!
+                                              .data!
+                                              .bookings![index]
+                                              .date!,
+                                          style: headingStyle.copyWith(
+                                            color: colordeepGrey,
+                                            fontSize:
+                                                screenWidth(context) * 0.04,
+                                            fontWeight: FontWeight.w400,
                                           ),
-                                          const HorizontalSpace(value: 1),
-                                          Text(
+                                        ),
+                                        const HorizontalSpace(value: 1),
+                                        Text(
+                                          GetIt.I<ProfileCubit>()
+                                              .userModel!
+                                              .data!
+                                              .bookings![index]
+                                              .time!
+                                              .substring(0, 5)
+                                              .toString(),
+                                          style: headingStyle.copyWith(
+                                            color: colordeepGrey,
+                                            fontSize:
+                                                screenWidth(context) * 0.04,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const VerticalSpace(value: 0.7),
+                                    Text(
+                                      getislammicDate(GetIt.I<ProfileCubit>()
+                                          .userModel!
+                                          .data!
+                                          .bookings![index]
+                                          .date!),
+                                      style: headingStyle.copyWith(
+                                        color: colordeepGrey,
+                                        fontSize: screenWidth(context) * 0.04,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    const VerticalSpace(value: 0.7),
+                                    Wrap(
+                                      children: [
+                                        Text(
+                                          getremindtimeAndDate(
                                             GetIt.I<ProfileCubit>()
                                                 .userModel!
                                                 .data!
                                                 .bookings![index]
                                                 .time!,
-                                            style: headingStyle.copyWith(
-                                              color: colordeepGrey,
-                                              fontSize:
-                                                  screenWidth(context) * 0.04,
-                                              fontWeight: FontWeight.w400,
-                                            ),
+                                            GetIt.I<ProfileCubit>()
+                                                .userModel!
+                                                .data!
+                                                .bookings![index]
+                                                .date!,
                                           ),
-                                        ],
-                                      ),
-                                      const VerticalSpace(value: 0.7),
-                                      Text(
-                                        getislammicDate(GetIt.I<ProfileCubit>()
-                                            .userModel!
-                                            .data!
-                                            .bookings![index]
-                                            .date!),
-                                        style: headingStyle.copyWith(
-                                          color: colordeepGrey,
-                                          fontSize: screenWidth(context) * 0.04,
-                                          fontWeight: FontWeight.w400,
+                                          maxLines: 3,
+                                          style: headingStyle.copyWith(
+                                            color: colordeepGrey,
+                                            fontSize:
+                                                screenWidth(context) * 0.035,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
-                                      ),
-                                      const VerticalSpace(value: 0.7),
-                                      Wrap(
-                                        children: [
-                                          Text(
-                                            getremindtimeAndDate(
+                                      ],
+                                    ),
+                                    const VerticalSpace(value: 0.7),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          translateOrderStatuse(
                                               GetIt.I<ProfileCubit>()
                                                   .userModel!
                                                   .data!
                                                   .bookings![index]
-                                                  .time!,
+                                                  .booked!),
+                                          style: headingStyle.copyWith(
+                                            color: kMainColor,
+                                            fontSize:
+                                                screenWidth(context) * 0.04,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        const HorizontalSpace(value: 6),
+                                        SizedBox(
+                                          width: screenWidth(context) * 0.25,
+                                          height: screenHeight(context) * 0.04,
+                                          child: CustomGeneralButton(
+                                            onTap: () => GetIt.I<ProfileCubit>()
+                                                .postCancelAppointment(
                                               GetIt.I<ProfileCubit>()
                                                   .userModel!
                                                   .data!
                                                   .bookings![index]
-                                                  .date!,
+                                                  .timeId!,
                                             ),
-                                            maxLines: 3,
-                                            style: headingStyle.copyWith(
-                                              color: colordeepGrey,
-                                              fontSize:
-                                                  screenWidth(context) * 0.035,
-                                              fontWeight: FontWeight.w400,
-                                            ),
+                                            text: translateString(
+                                                "Cancel", "الغاء", "İptal"),
+                                            textColor: Colors.white,
+                                            color: kMainColor,
+                                            borderColor: Colors.transparent,
                                           ),
-                                        ],
-                                      ),
-                                      const VerticalSpace(value: 0.7),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            translateOrderStatuse(
-                                                GetIt.I<ProfileCubit>()
-                                                    .userModel!
-                                                    .data!
-                                                    .bookings![index]
-                                                    .booked!),
-                                            style: headingStyle.copyWith(
-                                              color: kMainColor,
-                                              fontSize:
-                                                  screenWidth(context) * 0.04,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                          const HorizontalSpace(value: 6),
-                                          SizedBox(
-                                            width: screenWidth(context) * 0.25,
-                                            height:
-                                                screenHeight(context) * 0.04,
-                                            child: CustomGeneralButton(
-                                              onTap: () =>
-                                                  GetIt.I<ProfileCubit>()
-                                                      .postCancelAppointment(
-                                                GetIt.I<ProfileCubit>()
-                                                    .userModel!
-                                                    .data!
-                                                    .bookings![index]
-                                                    .timeId!,
-                                              ),
-                                              text: translateString(
-                                                  "Cancel", "الغاء", "İptal"),
-                                              textColor: Colors.white,
-                                              color: kMainColor,
-                                              borderColor: Colors.transparent,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      : Padding(
-                          padding:
-                              EdgeInsets.only(top: screenHeight(context) * 0.2),
-                          child: Center(
-                            child: Text(
-                              translateString(
-                                  "no Booking here  yet",
-                                  "لا توجد حجوزات بعد",
-                                  "burada henüz Rezervasyon yok"),
-                              style: headingStyle.copyWith(
-                                color: kMainColor,
-                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                )
-              : loading();
-        },
-      ),
+                      )
+                    : Padding(
+                        padding:
+                            EdgeInsets.only(top: screenHeight(context) * 0.2),
+                        child: Center(
+                          child: Text(
+                            translateString(
+                                "no Booking here  yet",
+                                "لا توجد حجوزات بعد",
+                                "burada henüz Rezervasyon yok"),
+                            style: headingStyle.copyWith(
+                              color: kMainColor,
+                            ),
+                          ),
+                        ),
+                      ),
+              )
+            : loading();
+      },
     );
   }
 }
