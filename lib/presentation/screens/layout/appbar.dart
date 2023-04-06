@@ -19,90 +19,34 @@ AppBar layoutAppbar(context, Function(int)? onSelected) {
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0.0,
-    leading: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        // const HorizontalSpace(value: 0.3),
-        InkWell(
-          onTap: () {
-            MagicRouter.navigateTo(const DashboardScreen());
-          },
-          child: Container(
-            width: screenWidth(context) * 0.2,
-            height: screenHeight(context) * 0.05,
-            color: colorLightGrey,
-            child: Center(
-              child: Text(
-                translateString("Dashboard", "لوحة التحكم", "Gösterge Paneli"),
-                style: headingStyle.copyWith(
-                  color: kMainColor,
-                  fontWeight: FontWeight.w400,
-                  fontSize: screenWidth(context) * 0.03,
-                ),
-              ),
-            ),
-          ),
+    leading:badges. Badge(
+      badgeStyle: const BadgeStyle(badgeColor: Color(0xffFF0921)),
+      badgeAnimation: const BadgeAnimation.fade(
+        animationDuration: Duration(
+          seconds: 2,
         ),
-        BlocConsumer<ProfileCubit, ProfileState>(
-          bloc: GetIt.I<ProfileCubit>(),
-          builder: (context, state) => (prefs.getString("user_type") != "user")
-              ? Text(
-                  (GetIt.I<ProfileCubit>().tutorProfileModel != null)
-                      ? translateString(
-                          "hello ${GetIt.I<ProfileCubit>().tutorProfileModel!.data!.name!}",
-                          "مرحبا ${GetIt.I<ProfileCubit>().tutorProfileModel!.data!.name!}",
-                          "")
-                      : "",
-                  style: headingStyle.copyWith(
-                    color: kMainColor,
-                    fontWeight: FontWeight.w400,
-                    fontSize: screenWidth(context) * 0.03,
-                  ))
-              : Text(
-                  (GetIt.I<ProfileCubit>().userModel != null)
-                      ? translateString(
-                          "hello ${GetIt.I<ProfileCubit>().userModel!.data!.name!}",
-                          "مرحبا ${GetIt.I<ProfileCubit>().userModel!.data!.name!}",
-                          "")
-                      : "",
-                  style: headingStyle.copyWith(
-                    color: kMainColor,
-                    fontWeight: FontWeight.w400,
-                    fontSize: screenWidth(context) * 0.03,
-                  )),
-          listener: (context, state) {},
+      ),
+      badgeContent: Text(
+        "0",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: screenWidth(context) * 0.03,
         ),
-        Badge(
-          badgeStyle: const BadgeStyle(badgeColor: Color(0xffFF0921)),
-          badgeAnimation: const BadgeAnimation.fade(
-            animationDuration: Duration(
-              seconds: 2,
-            ),
-          ),
-          badgeContent: Text(
-            "0",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: screenWidth(context) * 0.03,
-            ),
-          ),
-          position: BadgePosition.topStart(
-            start: screenWidth(context) * 0.02,
-            top: -(screenHeight(context) * 0.002),
-          ),
-          child: IconButton(
-            icon: Icon(
-              Icons.notifications,
-              color: kMainColor,
-              size: screenWidth(context) * 0.07,
-            ),
-            padding: EdgeInsets.zero,
-            focusColor: Colors.white,
-            onPressed: () {},
-          ),
+      ),
+      position: BadgePosition.topStart(
+        start: screenWidth(context) * 0.02,
+        top: -(screenHeight(context) * 0.002),
+      ),
+      child: IconButton(
+        icon: Icon(
+          Icons.notifications,
+          color: kMainColor,
+          size: screenWidth(context) * 0.07,
         ),
-      ],
+        padding: EdgeInsets.zero,
+        focusColor: Colors.white,
+        onPressed: () {},
+      ),
     ),
     actions: [
       BlocConsumer<AuthCubit, AuthState>(
