@@ -24,7 +24,6 @@ import 'package:zat/presentation/screens/myaccount/model/specialicity.dart';
 import 'package:zat/presentation/screens/myaccount/model/tutuor_model.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/custom_drop_down.dart';
-import '../../dashboard/consultant/pages/appointment/appointment.dart';
 import '../actions/delete_language.dart';
 import '../actions/edit_tutor_appointment.dart';
 import '../widget/language_selection.dart';
