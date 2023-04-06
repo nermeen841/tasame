@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ AppBar layoutAppbar(context, Function(int)? onSelected) {
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0.0,
-    leading: Badge(
+    leading:badges. Badge(
       badgeStyle: const BadgeStyle(badgeColor: Color(0xffFF0921)),
       badgeAnimation: const BadgeAnimation.fade(
         animationDuration: Duration(

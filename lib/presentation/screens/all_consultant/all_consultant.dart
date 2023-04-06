@@ -42,6 +42,7 @@ class _AllConsultantScreenState extends State<AllConsultantScreen> {
             floatingActionButton: BlocConsumer<SettingCubit, SettingState>(
               bloc: GetIt.I<SettingCubit>(),
               builder: (context, state) => FloatingActionButton(
+                heroTag: "hero4",
                 onPressed: () async {
                   if (Platform.isAndroid) {
                     await launch(

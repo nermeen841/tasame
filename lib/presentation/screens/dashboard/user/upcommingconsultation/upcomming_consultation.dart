@@ -45,6 +45,7 @@ class _UpcommingConsultationsScreenState
           ? BlocConsumer<SettingCubit, SettingState>(
               bloc: GetIt.I<SettingCubit>(),
               builder: (context, state) => FloatingActionButton(
+                heroTag: "hero5",
                 onPressed: () async {
                   if (Platform.isAndroid) {
                     await launch(

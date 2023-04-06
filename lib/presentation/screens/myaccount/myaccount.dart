@@ -82,6 +82,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               ? BlocConsumer<SettingCubit, SettingState>(
                   bloc: GetIt.I<SettingCubit>(),
                   builder: (context, state) => FloatingActionButton(
+                    heroTag: "hero6",
                     onPressed: () async {
                       if (Platform.isAndroid) {
                         await launch(

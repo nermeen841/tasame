@@ -62,7 +62,7 @@ class _PersonCardState extends State<PersonCard> {
             },
             child: SizedBox(
               width: double.infinity,
-              height: screenHeight(context) * 0.23,
+              height: screenHeight(context) * 0.21,
               child: Stack(
                 children: [
                   SizedBox(
